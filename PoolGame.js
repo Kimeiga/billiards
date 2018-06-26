@@ -1,5 +1,11 @@
+// var sketch = function(p) {
+// 	p.setup = setup();
+// };
+// new p5(sketch, 'container');
+
 function setup(){
-  createCanvas(1041, 541);
+	var myCanvas = createCanvas(1040, 540);
+	myCanvas.parent("billiards");
   myTable = new PTable(20, 20, 1000, 40);
   myTable.rack();
   myTable.display();

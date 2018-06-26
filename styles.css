@@ -1,0 +1,39 @@
+@import url('https://rsms.me/inter/inter-ui.css');
+
+body {
+    padding: 0; margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    min-height: 100vh;
+    background: black;
+
+    font-family: "Inter UI", Helvetica, Arial, sans-serif;
+    color: #4b9368;
+} 
+p{
+    margin: 8px 0;
+}
+h2{
+    margin: 8px 0;
+}
+a{
+    margin: 8px 0;
+    color: #c1976b;
+}
+#billiards {
+    /* margin: auto; */
+    /* padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto; */
+    width: 1042px;
+
+    
+    height: 542px;
+    margin: 10px;
+    /* padding: 0;
+    margin: auto;
+    display: block; */
+}
