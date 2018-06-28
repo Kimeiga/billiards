@@ -3,18 +3,92 @@
 // };
 // new p5(sketch, 'container');
 
+
+function sleep(milliseconds) {
+	var startTime = new Date().getTime();
+	while (new Date().getTime() < startTime + milliseconds);
+}
+function vh(v) {
+  var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  return (v * h) / 100;
+}
+
+function vw(v) {
+  var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  return (v * w) / 100;
+}
+
+function vmin(v) {
+  return Math.min(vh(v), vw(v));
+}
+
+function vmax(v) {
+  return Math.max(vh(v), vw(v));
+}
+// function parentWidth(elem) {
+//     return elem.parentElement.clientWidth;
+// }
+// var screen_width = parentWidth(document.getElementById('container'));
+// function parentHeight(elem) {
+//     return elem.parentElement.clientHeight;
+// }
+// var screen_height = parentWidth(document.getElementById('container'));
+
+if(window.devicePixelRatio !== undefined) {
+    dpr = window.devicePixelRatio;
+} else {
+    dpr = 1;
+}
+
+var screen_width = window.screen.width * dpr;
+var screen_height = window.screen.height * dpr;
+
 function setup(){
-	var myCanvas = createCanvas(1040, 540);
-	myCanvas.parent("billiards");
-  myTable = new PTable(20, 20, 1000, 40);
-  myTable.rack();
-  myTable.display();
+	
+	// var myCanvas = createCanvas(1240, 640);
+	if(window.innerWidth > window.innerHeight){
+		//desktop
+		var myCanvas = createCanvas(window.innerWidth, window.innerWidth * 0.5 + 20);
+		myCanvas.parent("billiards");
+		myTable = new PTable(20, 20, window.innerWidth - 40, window.innerWidth / 20);
+	}
+	else{
+		//mobile, rotate entire game board
+		
+		// sleep(1000);
+		displayHeight = displayHeight - 80;
+		var correctHeight = displayHeight;
+		if(displayHeight / displayWidth > 2){
+			correctHeight = displayWidth * 2 - 40;
+		}
+		print(displayWidth + " " + displayHeight + " " + correctHeight);
+
+		var myCanvas = createCanvas(displayHeight, displayWidth);
+		// rotate(PI/2);
+		// translate(0,-height/2 - 20);
+		myCanvas.parent("billiards");
+		
+		myTable = new PTable(20, 20, correctHeight - 40, correctHeight / 20);
+	}
+
+	
+	
+    myTable.rack();
+	myTable.display();
+	
+	// noLoop();
 }
 
 var canMove = true;
 
 function draw(){
 	
+	// if(window.innerWidth <= window.innerHeight){
+	// 	//mobile
+	// 	rotate(PI/2);
+	// 	translate(0,-height/2 - 20);
+	// }
+
   myTable.action();
   myTable.display();
 	
@@ -36,14 +110,39 @@ function draw(){
 			
 		stroke(guideColor);
 		strokeWeight(guideWidth);
-		arrow(myTable.balls[0].getX(), myTable.balls[0].getY(), mouseX, mouseY);
+
+		if(window.innerWidth <= window.innerHeight){
+			//mobile
+			// push();
+			// rotate(-PI/2);
+			// arrow(myTable.balls[0].getX(), myTable.balls[0].getY(), window.innerWidth-mouseX, window.innerHeight - mouseY);
+			// arrow(myTable.balls[0].getX(), myTable.balls[0].getY(), window.innerHeight - mouseY, mouseX);
+			if(touches[0] != null){
+				arrow(myTable.balls[0].getX(), myTable.balls[0].getY(), mouseY, displayWidth - mouseX);
+			}
+			// pop();
+		}
+		else{
+			//desktop
+			arrow(myTable.balls[0].getX(), myTable.balls[0].getY(), mouseX, mouseY);
+		}
+		
 		pop();
 	}
 	
 }
+
 function mouseReleased(){
 	if(canMove == true){
-		var mover = createVector(mouseX - myTable.balls[0].getX(), mouseY - myTable.balls[0].getY());
+		if(window.innerWidth <= window.innerHeight){
+			//mobile
+			var mover = createVector(mouseY - myTable.balls[0].getX(), displayWidth - mouseX - myTable.balls[0].getY());
+		}
+		else{
+			// desktop
+			var mover = createVector(mouseX - myTable.balls[0].getX(), mouseY - myTable.balls[0].getY());
+		}
+		
 		myTable.balls[0].hit(mover.mag()/25, mover.heading());
 		canMove = false;
 		this.myTable.madeMove();

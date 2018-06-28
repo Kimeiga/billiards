@@ -2,16 +2,19 @@
 
 body {
     padding: 0; margin: 0;
+    
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-flow: column;
-    min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        min-height: 90vh;
     background: black;
 
     font-family: "Inter UI", Helvetica, Arial, sans-serif;
     color: #4b9368;
 } 
+
+
 p{
     margin: 8px 0;
 }
@@ -28,12 +31,82 @@ a{
     padding-right: 0;
     margin-left: auto;
     margin-right: auto; */
-    width: 1042px;
+    /* width: 1242px; */
+    width: 100vw;
 
     
-    height: 542px;
-    margin: 10px;
+    /* height: 642px; */
+    /* height: calc(50vw + 20px); */
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+        background: red;
+    /* margin: 10px; */
     /* padding: 0;
     margin: auto;
     display: block; */
+}
+
+#container { 
+    /* display:block;
+
+    z-index: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	
+	text-align: center;
+	overflow: hidden;
+	-webkit-overflow-scrolling: touch;
+	top: 0;
+	
+	box-sizing: border-box; */
+}
+@media only screen and (orientation:portrait){
+  #container {  
+    height: 100vw;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+}
+@media only screen and (orientation:landscape){
+  #container {  
+     -webkit-transform: rotate(0deg);
+     -moz-transform: rotate(0deg);
+     -o-transform: rotate(0deg);
+     -ms-transform: rotate(0deg);
+     transform: rotate(0deg);
+  }
+}
+
+@media screen and (orientation:portrait) {
+    /* #container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+
+      -ms-transform: rotate(-90deg);
+      -webkit-transform: rotate(-90deg); 
+      transform: rotate(-90deg);
+      width: 100vh ;
+      height: 100vw;
+      overflow: scroll;
+    } */
+    /* #container {
+        
+        -ms-transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg); 
+        transform: rotate(-90deg);
+    } */
+
+    /* #billiards {
+
+        height: 100vh;
+        width: 100vw;
+    } */
 }

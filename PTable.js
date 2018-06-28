@@ -64,6 +64,16 @@ function PTable(X, Y, W, holeSize){
 		});
   }
   this.display = function(){
+
+    fill(0);
+    rect(0,0,width,height);
+    if(window.innerWidth <= window.innerHeight){
+      var correctHeight = displayHeight;
+      if(displayHeight / displayWidth > 2){
+        correctHeight = displayWidth * 2 - 40;
+      }
+      translate((displayHeight - correctHeight )*0.5,(displayWidth - (correctHeight / 2))*0.25);
+    }
     //the rail
     fill(200, 150, 100);
     rect(this.myX-this.HoleSize/2, this.myY-this.HoleSize/2, this.myW+this.HoleSize, this.myH+this.HoleSize);
