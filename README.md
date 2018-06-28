@@ -2,7 +2,7 @@
 
 ## Hakan's lil billiards game 😁
 
-[view](kimeiga.github.io/billiards)
+[Play](https://www.kimeiga.github.io/billiards)
 
 [View on OpenProcessing](https://www.openprocessing.org/sketch/564684)
 
