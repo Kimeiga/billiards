@@ -48,9 +48,9 @@ function setup(){
 	// var myCanvas = createCanvas(1240, 640);
 	if(window.innerWidth > window.innerHeight){
 		//desktop
-		var myCanvas = createCanvas(window.innerWidth, window.innerWidth * 0.5 + 20);
+		var myCanvas = createCanvas(window.innerWidth * .98, window.innerWidth * .98 * 0.5 + 20);
 		myCanvas.parent("billiards");
-		myTable = new PTable(20, 20, window.innerWidth - 40, window.innerWidth / 20);
+		myTable = new PTable(20, 20, (window.innerWidth * .98) - 40, (window.innerWidth * .98) / 20);
 	}
 	else{
 		//mobile, rotate entire game board
